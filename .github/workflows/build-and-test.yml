@@ -21,16 +21,16 @@ jobs:
       - name: ⬇️ Checkout repo
         uses: actions/checkout@v4
 
-      - name: ⎔ Enable corepack (pnpm)
-        run: |
-          corepack enable
-          corepack prepare pnpm@latest --activate
-
-      - name: ⎔ Setup node
+      - name: ⎔ Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node }}
           cache: 'pnpm'
+
+      - name: ⎔ Setup pnpm
+        uses: pnpm/action-setup@v3
+        with:
+          version: latest
 
       - name: 📦 Install dependencies
         run: pnpm install --frozen-lockfile
