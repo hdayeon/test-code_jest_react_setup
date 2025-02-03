@@ -25,12 +25,13 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node }}
-          cache: 'pnpm'
 
-      - name: ⎔ Install pnpm (Manually)
+      - name: ⎔ Manually Install pnpm
         run: |
-          npm install -g pnpm
-          pnpm --version # 설치 확인
+          curl -fsSL https://get.pnpm.io/install.sh | sh -
+          export PATH=$HOME/.local/share/pnpm:$PATH
+          echo "PATH=$HOME/.local/share/pnpm:$PATH" >> $GITHUB_ENV
+          pnpm --version  # 설치 확인
 
       - name: 📦 Install dependencies
         run: pnpm install --frozen-lockfile
