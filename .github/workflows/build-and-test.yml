@@ -27,10 +27,11 @@ jobs:
           node-version: ${{ matrix.node }}
           cache: 'pnpm'
 
-      - name: ⎔ Setup pnpm
-        uses: pnpm/action-setup@v3
-        with:
-          version: latest
+      - name: ⎔ Install pnpm
+        run: |
+          corepack enable
+          corepack prepare pnpm@latest --activate
+          pnpm --version # 설치 확인
 
       - name: 📦 Install dependencies
         run: pnpm install --frozen-lockfile
