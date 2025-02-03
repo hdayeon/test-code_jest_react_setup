@@ -27,10 +27,9 @@ jobs:
           node-version: ${{ matrix.node }}
           cache: 'pnpm'
 
-      - name: ⎔ Install pnpm
+      - name: ⎔ Install pnpm (Manually)
         run: |
-          corepack enable
-          corepack prepare pnpm@latest --activate
+          npm install -g pnpm
           pnpm --version # 설치 확인
 
       - name: 📦 Install dependencies
